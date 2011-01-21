@@ -1,4 +1,4 @@
-module Imdb
+module IMDB
 
   class MovieList
     def movies
@@ -25,9 +25,9 @@ module Imdb
         
         [id, title]
       end.uniq.map do |values|
-        Imdb::Movie.new(*values)
+        IMDB::Movie.new(*values)
       end
     end
   end # MovieList
 
-end # Imdb
+end # IMDB

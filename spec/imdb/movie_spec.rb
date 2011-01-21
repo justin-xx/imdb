@@ -5,13 +5,13 @@ require File.dirname(__FILE__) + '/../spec_helper.rb'
 #     http://www.imdb.com/title/tt0095016/
 #
 
-describe "Imdb::Movie" do
+describe "IMDB::Movie" do
   
   describe "valid movie" do
 
     before(:each) do
       # Get Die Hard (1988)
-      @movie = Imdb::Movie.new("0095016")
+      @movie = IMDB::Movie.new("0095016")
     end
   
     it "should find the cast members" do
@@ -98,7 +98,7 @@ describe "Imdb::Movie" do
     
       it "should find multiple directors" do
         # The Matrix Revolutions (2003)
-        movie = Imdb::Movie.new("0242653")
+        movie = IMDB::Movie.new("0242653")
       
         movie.director.should be_an(Array)
         movie.director.size.should eql(2)
@@ -108,38 +108,38 @@ describe "Imdb::Movie" do
     end
 
     it "should provide a convenience method to search" do
-      movies = Imdb::Movie.search("Star Trek")
+      movies = IMDB::Movie.search("Star Trek")
       movies.should respond_to(:each)
-      movies.each { |movie| movie.should be_an_instance_of(Imdb::Movie) }
+      movies.each { |movie| movie.should be_an_instance_of(IMDB::Movie) }
     end
   
     it "should provide a convenience method to top 250" do
-      movies = Imdb::Movie.top_250
+      movies = IMDB::Movie.top_250
       movies.should respond_to(:each)
-      movies.each { |movie| movie.should be_an_instance_of(Imdb::Movie) }
+      movies.each { |movie| movie.should be_an_instance_of(IMDB::Movie) }
     end
   end
   
   describe "plot" do
     it "should find a correct plot when HTML links are present" do
-      movie = Imdb::Movie.new("0083987")
+      movie = IMDB::Movie.new("0083987")
       movie.plot.should eql("Biography of Mahatma Gandhi, the lawyer who became the famed leader of the Indian revolts against the British through his philosophy of non-violent protest.")
     end
     
     it "should not have a 'more' link in the plot" do
-      movie = Imdb::Movie.new("0036855")
+      movie = IMDB::Movie.new("0036855")
       movie.plot.should eql("Paula's aunt Alice Alquist, a famous entertainer, is murdered in her home. Paula, who lives with her aunt finds the body...")      
     end
   end
   
   describe "mpaa rating" do
     it "should find the mpaa rating when present" do
-      movie = Imdb::Movie.new("0111161")
+      movie = IMDB::Movie.new("0111161")
       movie.mpaa_rating.should == "Rated R for language and prison violence."
     end
     
     it "should be nil when not present" do
-      movie = Imdb::Movie.new("0095016")
+      movie = IMDB::Movie.new("0095016")
       movie.mpaa_rating.should be_nil
     end
   end
@@ -148,7 +148,7 @@ describe "Imdb::Movie" do
     
     before(:each) do 
       # Grotesque (2009)
-      @movie = Imdb::Movie.new("1352369")
+      @movie = IMDB::Movie.new("1352369")
     end
     
     it "should have a title" do
@@ -164,7 +164,7 @@ describe "Imdb::Movie" do
     end
 
     it "should return the release date for movies" do
-      movie = Imdb::Movie.new('0111161')
+      movie = IMDB::Movie.new('0111161')
       movie.release_date.should eql("23 September 1994 (USA)")
     end
   end
@@ -172,7 +172,7 @@ describe "Imdb::Movie" do
   describe "with an old poster (no @@)" do
     before(:each) do
       # Pulp Fiction (1994)
-      @movie = Imdb::Movie.new("0110912")
+      @movie = IMDB::Movie.new("0110912")
     end
 
     it "should have a poster" do

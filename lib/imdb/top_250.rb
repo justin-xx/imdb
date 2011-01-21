@@ -1,4 +1,4 @@
-module Imdb
+module IMDB
 
   class Top250 < MovieList
     private
@@ -7,4 +7,4 @@ module Imdb
     end
   end # Top250
 
-end # Imdb
+end # IMDB

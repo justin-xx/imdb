@@ -1,9 +1,9 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
-describe "Imdb::Search with multiple search results" do
+describe "IMDB::Search with multiple search results" do
   
   before(:each) do
-    @search = Imdb::Search.new("Star Trek")
+    @search = IMDB::Search.new("Star Trek")
   end
 
   it "should remember the query" do
@@ -14,8 +14,8 @@ describe "Imdb::Search with multiple search results" do
     @search.movies.size.should > 10
   end
   
-  it "should return Imdb::Movie objects only" do
-    @search.movies.each { |movie| movie.should be_an(Imdb::Movie) }
+  it "should return IMDB::Movie objects only" do
+    @search.movies.each { |movie| movie.should be_an(IMDB::Movie) }
   end
   
   it "should not return movies with no title" do
@@ -24,25 +24,25 @@ describe "Imdb::Search with multiple search results" do
   
 end
 
-describe "Imdb::Search with an exact match and no poster" do
+describe "IMDB::Search with an exact match and no poster" do
   
   it "should not raise an exception" do
     lambda {
-      @search = Imdb::Search.new("Kannethirey Thondrinal").movies
+      @search = IMDB::Search.new("Kannethirey Thondrinal").movies
     }.should_not raise_error
   end
   
   it "should return the movie id correctly" do
-    @search = Imdb::Search.new("Kannethirey Thondrinal")
+    @search = IMDB::Search.new("Kannethirey Thondrinal")
     @search.movies.first.id.should eql("0330508")
   end
   
 end
 
-describe "Imdb::Search with an exact match" do
+describe "IMDB::Search with an exact match" do
   
   before(:each) do
-    @search = Imdb::Search.new("Matrix Revolutions")
+    @search = IMDB::Search.new("Matrix Revolutions")
   end
   
   it "should find one result" do

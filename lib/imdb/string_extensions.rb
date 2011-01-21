@@ -1,7 +1,7 @@
 require 'cgi'
 require 'iconv'
  
-module Imdb #:nordoc:
+module IMDB #:nordoc:
   module StringExtensions
   
     # Unescape HTML
@@ -21,4 +21,4 @@ module Imdb #:nordoc:
   end
 end
 
-String.send :include, Imdb::StringExtensions
+String.send :include, IMDB::StringExtensions

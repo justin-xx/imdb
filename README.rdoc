@@ -20,7 +20,7 @@ IMDB currently features the following:
 
 Movies:
 
-  i = Imdb::Movie.new("0095016")
+  i = IMDB::Movie.new("0095016")
   
   i.title
   #=> "Die Hard"
@@ -29,7 +29,7 @@ Movies:
 
 Searching:
 
-    i = Imdb::Search.new("Star Trek")
+    i = IMDB::Search.new("Star Trek")
 
     i.movies.size
     #=> 97

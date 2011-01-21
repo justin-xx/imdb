@@ -1,6 +1,6 @@
 require 'optparse'
 
-module Imdb
+module IMDB
   class CLI
     
     # Run the imdb command
@@ -18,7 +18,7 @@ module Imdb
       
       @stdout = stdout
       
-      @stdout.puts "IMDB Scraper #{Imdb::VERSION}"
+      @stdout.puts "IMDB Scraper #{IMDB::VERSION}"
       
       options = {
       }
@@ -33,7 +33,7 @@ Usage: #{File.basename($0)} Search Query
         BANNER
         opts.separator ""
         opts.on("-v", "--version",
-                "Show the current version.") { stdout.puts "IMDB #{Imdb::VERSION}"; exit }
+                "Show the current version.") { stdout.puts "IMDB #{IMDB::VERSION}"; exit }
         opts.on("-h", "--help",
                 "Show this help message.") { stdout.puts opts; exit }
         opts.parse!(arguments)
@@ -60,7 +60,7 @@ Usage: #{File.basename($0)} Search Query
       @stdout.puts
       @stdout.puts " - fetching movie #{imdb_id}"
       
-      movie = Imdb::Movie.new(imdb_id)
+      movie = IMDB::Movie.new(imdb_id)
       
       display_movie_details(movie)
     end
@@ -69,7 +69,7 @@ Usage: #{File.basename($0)} Search Query
       @stdout.puts
       @stdout.puts " - searching for \"#{query}\""
       
-      search = Imdb::Search.new(query)
+      search = IMDB::Search.new(query)
       
       if search.movies.size == 1
         display_movie_details(search.movies.first)

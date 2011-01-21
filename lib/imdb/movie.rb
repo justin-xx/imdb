@@ -1,4 +1,4 @@
-module Imdb
+module IMDB
   
   # Represents a Movie on IMDB.com
   class Movie
@@ -6,9 +6,9 @@ module Imdb
     
     # Initialize a new IMDB movie object with it's IMDB id (as a String)
     #
-    #   movie = Imdb::Movie.new("0095016")
+    #   movie = IMDB::Movie.new("0095016")
     #
-    # Imdb::Movie objects are lazy loading, meaning that no HTTP request
+    # IMDB::Movie objects are lazy loading, meaning that no HTTP request
     # will be performed when a new object is created. Only when you use an 
     # accessor that needs the remote data, a HTTP request is made (once).
     #
@@ -39,7 +39,7 @@ module Imdb
     
     # Returns a new Hpricot document for parsing.
     def document
-      @document ||= Hpricot(Imdb::Movie.find_by_id(@id))
+      @document ||= Hpricot(IMDB::Movie.find_by_id(@id))
     end
     
     # Use HTTParty to fetch the raw HTML for this movie.  
@@ -49,7 +49,7 @@ module Imdb
     
     # Convenience method for search
     def self.search(query)
-      Imdb::Search.new(query).movies
+      IMDB::Search.new(query).movies
     end    
   end # Movie
-end # Imdb
+end # IMDB

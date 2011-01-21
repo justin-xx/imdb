@@ -1,12 +1,12 @@
 require File.dirname(__FILE__) + "/../spec_helper"
 
-describe Imdb::Top250 do
+describe IMDB::Top250 do
   before(:each) do
-    @movies = Imdb::Top250.new.movies
+    @movies = IMDB::Top250.new.movies
   end
   
   it "should be a list of movies" do
-    @movies.each { |movie| movie.should be_an_instance_of(Imdb::Movie) }
+    @movies.each { |movie| movie.should be_an_instance_of(IMDB::Movie) }
   end
   
   it "should return the top 250 movies from IMDB.com" do

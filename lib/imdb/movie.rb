@@ -21,17 +21,19 @@ module IMDB
     def credits
       raw_credits = (document/'table[@cellspacing="1"]')
 
-      raw_credits.inject({}) do |parsed_credits, result|
-        parsed_credits << case result.inner_text    
+      credit = raw_credits.inject({}) do |parsed_credits, result|
+        case result.inner_text    
         when /^Directed by.*/i, /Makeup/, /Art/
-          nil
+          {}
         when /^(Writing credits\s*)(.*)/i
           {:written_by => $2.gsub(/\(written by\)/, '').gsub(/\s*and\s*/, ',').gsub(/^\(WGA\)\s*/, '').strip}
         when /^(Cinematography by\s*)(.*)/i
           {:cinematographer => $2.gsub(/\(director of photography\)/, '').gsub(/\s*and\s*/, ', ').strip}
         else
-          nil
+          {}
         end
+        
+        parsed_credits.merge(credit)
       end            
     end
     

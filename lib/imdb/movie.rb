@@ -33,7 +33,7 @@ module IMDB
           {}
         end
         
-        _credits.merge(credit)
+        _credits = _credits.merge(credit)
       end            
       
       _credits

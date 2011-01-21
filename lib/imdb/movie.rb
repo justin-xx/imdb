@@ -20,11 +20,11 @@ module IMDB
 
     def credits
       raw_credits = (document/'table[@cellspacing="1"]')
-
-      credit = raw_credits.inject({}) do |parsed_credits, result|
-        case result.inner_text    
-        when /^Directed by.*/i, /Makeup/, /Art/
-          {}
+      
+      _credits = {}
+      
+      raw_credits.each do |raw_credit|
+        credit = case raw_credit.inner_text    
         when /^(Writing credits\s*)(.*)/i
           {:written_by => $2.gsub(/\(written by\)/, '').gsub(/\s*and\s*/, ',').gsub(/^\(WGA\)\s*/, '').strip}
         when /^(Cinematography by\s*)(.*)/i
@@ -33,8 +33,10 @@ module IMDB
           {}
         end
         
-        parsed_credits.merge(credit)
+        _credits.merge(credit)
       end            
+      
+      _credits
     end
     
     private
